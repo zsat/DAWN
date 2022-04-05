@@ -1,4 +1,3 @@
-from sre_constants import IN
 from subprocess import run
 from os import listdir
 from re import match
