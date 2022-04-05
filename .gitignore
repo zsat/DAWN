@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.vscode
+.DS_Store
+visualizations/.DS_Store
+visualizations/NLDAS_BGRUN_monthly.nc
+visualizations/bgrun_imgs/
+visualizations/bgrun_log_imgs/
+visualizations/bgrun_log_jan_imgs/
+visualizations/bgrun_log_jul_imgs/
+visualizations/matt_interp.py
+visualizations/met_MD.csv
