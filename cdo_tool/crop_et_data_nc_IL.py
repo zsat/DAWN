@@ -34,7 +34,7 @@ for filename in filenames:
   if not match("^\d{7}\.nc$", filename):
     continue
   
-  # good file, so run cdo on it
+  # good file, so run cdo on it; ALSO if you want to display the output of every file processed (it's a lot) set capture_output=False
   cmd_output = run([arg0, arg1, f"{INPUT_PATH}/{filename}", f"{OUTPUT_PATH}/{STATE}_{filename}"], shell=False, capture_output=True)
 
   # ensure that it ran successfully
