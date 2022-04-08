@@ -9,8 +9,8 @@ if IN_DAWN_SERVER:
   INPUT_PATH = "/mnt/gfs01/DAWN-ML/et_data_nc"
   OUTPUT_PATH = "/mnt/gfs01/DAWN-ML/et_data_nc_IL"
 else:
-  INPUT_PATH = "./"
-  OUTPUT_PATH = "./"
+  INPUT_PATH = "."
+  OUTPUT_PATH = "."
 
 STATE = "IL"
 
@@ -18,7 +18,7 @@ arg0 = "cdo"
 arg1 = "sellonlatbox,-91.51,-87.52,36.98,42.49"
 
 """
-cmd is % cdo sellonlatbox,-91.51,-87.52,36.98,42.49 infile outfile
+% cdo sellonlatbox,-91.51,-87.52,36.98,42.49 infile outfile
 """
 
 
@@ -35,7 +35,7 @@ for filename in filenames:
     continue
   
   # good file, so run cdo on it
-  cmd_output = run([arg0, arg1, f"{INPUT_PATH}/{filename}", f"{OUTPUT_PATH}/{STATE}_{filename}"])
+  cmd_output = run([arg0, arg1, f"{INPUT_PATH}/{filename}", f"{OUTPUT_PATH}/{STATE}_{filename}"], shell=False, capture_output=True)
 
   # ensure that it ran successfully
   if cmd_output.returncode != 0:
