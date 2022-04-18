@@ -11,7 +11,8 @@ currently meant for ET and LAI data for Matthew's
 project.
 """
 
-STATE, DATA_NAME = "IL", "LAI" # "et"
+STATE = "IL"
+DATA_NAME = "et" # "LAI"
 FILENAME_REGEX = "^\d{7}\.nc$" if DATA_NAME == "et" else "^LAI\d{7}\.nc$"
 
 INPUT_PATH, OUTPUT_PATH, ROOT = ".", ".", "/mnt/gfs01/DAWN-ML"
@@ -19,7 +20,7 @@ IN_DAWN_SERVER = True
 
 if IN_DAWN_SERVER:
   INPUT_PATH  = f"{ROOT}/{DATA_NAME}_data_nc_{STATE}"
-  OUTPUT_PATH = f"{ROOT}/{DATA_NAME}_data_nc_{STATE}"
+  OUTPUT_PATH = f"{ROOT}/{DATA_NAME}_data_nc_{STATE}" # only used for my method
 
 
 """ my method """
@@ -43,7 +44,11 @@ OUT_ROOT = "/home/zsating"
 OUT_NAME = f"{DATA_NAME}_all_{STATE}.nc"
 OUTFILE = f"{OUT_ROOT}/{OUT_NAME}"
 
+print(f"{strftime('%X')} : started")
+
 system(f"ncecat -u time {INPUT_PATH}/*.nc {OUTFILE}") 
 system(f"ncap2 -O -s 'time[time]=array(7296,1,$time)' {OUTFILE} {OUTFILE}")
 system(f"ncatted -O -a units,time,o,c,\"days since 2001-01-01\" {OUTFILE}")
 system(f"ncatted -O -h -a history,global,o,c,'N/A' {OUTFILE}")
+
+print(f"{strftime('%X')} : finished")
